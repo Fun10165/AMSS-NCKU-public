@@ -21,7 +21,7 @@ using namespace std;
 #include <mpi.h>
 
 #include "misc.h"
-#include "microdef.h"
+#include "macrodef.h"
 #include "scalar_class.h"
 
 //=======================================

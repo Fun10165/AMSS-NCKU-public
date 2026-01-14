@@ -5,12 +5,12 @@
 ! Because of overlap determination, source region is always larger than target
 ! region
 
-#include "microdef.fh"
+#include "macrodef.fh"
 
 #ifdef Vertex
 #ifdef Cell
 #error Both Cell and Vertex are defined
-#endif    
+#endif
 !--------------------------------------------------------------------------------------
 !
 ! Restrict from finner grids to coarser grids ignore the boundary point
@@ -75,8 +75,8 @@
      endif
   enddo
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
     lbf = idint((llbf-base)/FD+0.4)+1
@@ -140,21 +140,21 @@
        cxI(2) = j
        cxI(3) = k
 ! change to fine level reference
-!|*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*| 
+!|*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*|
 !|x===============x===============x===============x========|
        cxI = 2*(cxI+lbc-1) - 1
-! change to array index      
+! change to array index
        cxI = cxI - lbf + 1
 
        func(i,j,k)= funf(cxI(1),cxI(2),cxI(3))
     enddo
    enddo
   enddo
-  
+
   return
 
   end subroutine restrict3
-#endif  
+#endif
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! for different finite difference order usage
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -164,7 +164,7 @@
 #ifdef Vertex
 #ifdef Cell
 #error Both Cell and Vertex are defined
-#endif    
+#endif
 !--------------------------------------------------------------------------
 !
 ! Prolongation from coarser grids to finer grids
@@ -235,8 +235,8 @@
   enddo
 
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
     lbf = idint((llbf-base)/FD+0.4)+1
@@ -277,17 +277,17 @@
           write(*,*)llbp,uubp
           write(*,*)lbp,ubp,lbpc,ubpc
           if(imini.lt.1) write(*,*)"imini = ",imini
-          if(jmini.lt.1) write(*,*)"jmini = ",jmini       
-          if(kmini.lt.1) write(*,*)"kmini = ",kmini      
-          if(imino.lt.1) write(*,*)"imino = ",imino       
-          if(jmino.lt.1) write(*,*)"jmino = ",jmino       
-          if(kmino.lt.1) write(*,*)"kmino = ",kmino   
-          if(imaxi.gt.extc(1)) write(*,*)"imaxi = ",imaxi,"extc(1) = ",extc(1) 
-          if(jmaxi.gt.extc(2)) write(*,*)"jmaxi = ",jmaxi,"extc(2) = ",extc(2) 
-          if(kmaxi.gt.extc(3)) write(*,*)"kmaxi = ",kmaxi,"extc(3) = ",extc(3) 
-          if(imaxo.gt.extf(1)) write(*,*)"imaxo = ",imaxo,"extf(1) = ",extf(1) 
-          if(jmaxo.gt.extf(2)) write(*,*)"jmaxo = ",jmaxo,"extf(2) = ",extf(2) 
-          if(kmaxo.gt.extf(3)) write(*,*)"kmaxo = ",kmaxo,"extf(3) = ",extf(3) 
+          if(jmini.lt.1) write(*,*)"jmini = ",jmini
+          if(kmini.lt.1) write(*,*)"kmini = ",kmini
+          if(imino.lt.1) write(*,*)"imino = ",imino
+          if(jmino.lt.1) write(*,*)"jmino = ",jmino
+          if(kmino.lt.1) write(*,*)"kmino = ",kmino
+          if(imaxi.gt.extc(1)) write(*,*)"imaxi = ",imaxi,"extc(1) = ",extc(1)
+          if(jmaxi.gt.extc(2)) write(*,*)"jmaxi = ",jmaxi,"extc(2) = ",extc(2)
+          if(kmaxi.gt.extc(3)) write(*,*)"kmaxi = ",kmaxi,"extc(3) = ",extc(3)
+          if(imaxo.gt.extf(1)) write(*,*)"imaxo = ",imaxo,"extf(1) = ",extf(1)
+          if(jmaxo.gt.extf(2)) write(*,*)"jmaxo = ",jmaxo,"extf(2) = ",extf(2)
+          if(kmaxo.gt.extf(3)) write(*,*)"kmaxo = ",kmaxo,"extf(3) = ",extf(3)
           return
   endif
 !~~~~~~> prolongation start...
@@ -295,13 +295,13 @@
    do j = jmino,jmaxo
     do i = imino,imaxo
 ! change to coarse level reference
-!|*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*| 
+!|*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*|
 !|x===============x===============x===============x========|
 !       if(i/2*2 == i)then
 !         cxI(1) = (i+lbf(1)-1)/2
 !       else
 !         cxI(1) = (i+lbf(1)-1)/2+1
-!       endif      
+!       endif
 !       if(j/2*2 == j)then
 !         cxI(2) = (j+lbf(2)-1)/2
 !       else
@@ -312,12 +312,12 @@
 !       else
 !         cxI(3) = (k+lbf(3)-1)/2+1
 !       endif
-! above code segment is equivalent to 
+! above code segment is equivalent to
        cxI(1) = i
        cxI(2) = j
        cxI(3) = k
        cxI = (cxI+lbf)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
 
        ii=i+lbf(1)-1
@@ -328,7 +328,7 @@
        if(ii/2*2==ii)then
          if(jj/2*2==jj)then
            if(kk/2*2==kk)then
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= C1*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       C2*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -396,7 +396,7 @@
          endif
        else
          if(jj/2*2==jj)then
-           if(kk/2*2==kk)then               
+           if(kk/2*2==kk)then
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= C1*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       C2*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -503,7 +503,7 @@
   integer::imino,imaxo,jmino,jmaxo,kmino,kmaxo
   logical::decide3d
   real*8,dimension(3) :: CD,FD
-  
+
   if(wei.ne.3)then
      write(*,*)"prolongrestrict.f90::restrict3: this routine only surport 3 dimension"
      write(*,*)"dim = ",wei
@@ -527,8 +527,8 @@
      endif
   enddo
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
 ! note say base = 0, llbf = 0, uubf = 2
@@ -587,14 +587,14 @@
        cxI(2) = j
        cxI(3) = k
 ! change to fine level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = 2*(cxI+lbc-1) - 1
-! change to array index      
+! change to array index
        cxI = cxI - lbf + 1
 
        if(any(cxI+2 > extf)) write(*,*)"error in restrict"
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
        if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
           tmp2= C1*(funf(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+funf(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)+2))&
                +C2*(funf(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+funf(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)+1))
@@ -612,7 +612,7 @@
     enddo
    enddo
   enddo
-  
+
   return
 
   end subroutine restrict3
@@ -660,7 +660,7 @@
   logical::decide3d
 
   real*8,dimension(3) :: CD,FD
-  
+
   if(wei.ne.3)then
      write(*,*)"prolongrestrict.f90::prolong3: this routine only surport 3 dimension"
      write(*,*)"dim = ",wei
@@ -685,8 +685,8 @@
   enddo
 
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
     lbf = idint((llbf-base)/FD+0.4)+1
@@ -738,10 +738,10 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
 
        ii=i+lbf(1)-1
@@ -752,7 +752,7 @@
        if(ii/2*2==ii)then
          if(jj/2*2==jj)then
            if(kk/2*2==kk)then
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= C1*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       C2*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -826,7 +826,7 @@
          endif
        else
          if(jj/2*2==jj)then
-           if(kk/2*2==kk)then               
+           if(kk/2*2==kk)then
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= C1*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       C2*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -941,7 +941,7 @@
 
   real*8,dimension(3) :: CD,FD
   real*8,dimension(3,4) :: CC
-  
+
   if(wei.ne.3)then
      write(*,*)"prolongrestrict.f90::prolong3: this routine only surport 3 dimension"
      write(*,*)"dim = ",wei
@@ -966,8 +966,8 @@
   enddo
 
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
     lbf = idint((llbf-base)/FD+0.4)+1
@@ -1033,12 +1033,12 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= CC(3,1)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       CC(3,2)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -1067,12 +1067,12 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= CC(3,4)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       CC(3,3)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -1101,12 +1101,12 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= CC(3,1)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       CC(3,2)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -1135,12 +1135,12 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= CC(3,4)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       CC(3,3)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -1169,12 +1169,12 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= CC(3,1)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       CC(3,2)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -1203,12 +1203,12 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= CC(3,4)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       CC(3,3)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -1238,12 +1238,12 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= CC(3,1)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       CC(3,2)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -1272,12 +1272,12 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>1.and.cxI(2)>1.and.cxI(3)>1)then
                 tmp2= CC(3,4)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)-1)+&
                       CC(3,3)*func(cxI(1)-1:cxI(1)+2,cxI(2)-1:cxI(2)+2,cxI(3)  )+&
@@ -1303,7 +1303,7 @@
   end subroutine prolong3new
 #else
 #error Not define Vertex nor Cell
-#endif  
+#endif
 #endif
 
 #elif (ghost_width == 3)
@@ -1311,7 +1311,7 @@
 #ifdef Vertex
 #ifdef Cell
 #error Both Cell and Vertex are defined
-#endif    
+#endif
 !--------------------------------------------------------------------------
 !
 ! Prolongation from coarser grids to finer grids
@@ -1379,8 +1379,8 @@
   enddo
 
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
     lbf = idint((llbf-base)/FD+0.4)+1
@@ -1421,20 +1421,20 @@
           write(*,*)llbp,uubp
           write(*,*)lbp,ubp,lbpc,ubpc
           if(imini.lt.1) write(*,*)"imini = ",imini
-          if(jmini.lt.1) write(*,*)"jmini = ",jmini       
-          if(kmini.lt.1) write(*,*)"kmini = ",kmini      
-          if(imino.lt.1) write(*,*)"imino = ",imino       
-          if(jmino.lt.1) write(*,*)"jmino = ",jmino       
-          if(kmino.lt.1) write(*,*)"kmino = ",kmino   
-          if(imaxi.gt.extc(1)) write(*,*)"imaxi = ",imaxi,"extc(1) = ",extc(1) 
-          if(jmaxi.gt.extc(2)) write(*,*)"jmaxi = ",jmaxi,"extc(2) = ",extc(2) 
-          if(kmaxi.gt.extc(3)) write(*,*)"kmaxi = ",kmaxi,"extc(3) = ",extc(3) 
-          if(imaxo.gt.extf(1)) write(*,*)"imaxo = ",imaxo,"extf(1) = ",extf(1) 
-          if(jmaxo.gt.extf(2)) write(*,*)"jmaxo = ",jmaxo,"extf(2) = ",extf(2) 
-          if(kmaxo.gt.extf(3)) write(*,*)"kmaxo = ",kmaxo,"extf(3) = ",extf(3) 
+          if(jmini.lt.1) write(*,*)"jmini = ",jmini
+          if(kmini.lt.1) write(*,*)"kmini = ",kmini
+          if(imino.lt.1) write(*,*)"imino = ",imino
+          if(jmino.lt.1) write(*,*)"jmino = ",jmino
+          if(kmino.lt.1) write(*,*)"kmino = ",kmino
+          if(imaxi.gt.extc(1)) write(*,*)"imaxi = ",imaxi,"extc(1) = ",extc(1)
+          if(jmaxi.gt.extc(2)) write(*,*)"jmaxi = ",jmaxi,"extc(2) = ",extc(2)
+          if(kmaxi.gt.extc(3)) write(*,*)"kmaxi = ",kmaxi,"extc(3) = ",extc(3)
+          if(imaxo.gt.extf(1)) write(*,*)"imaxo = ",imaxo,"extf(1) = ",extf(1)
+          if(jmaxo.gt.extf(2)) write(*,*)"jmaxo = ",jmaxo,"extf(2) = ",extf(2)
+          if(kmaxo.gt.extf(3)) write(*,*)"kmaxo = ",kmaxo,"extf(3) = ",extf(3)
           return
   endif
-  
+
   call symmetry_bd(2,extc,func,funcc,SoA)
 
 !~~~~~~> prolongation start...
@@ -1442,13 +1442,13 @@
    do j = jmino,jmaxo
     do i = imino,imaxo
 ! change to coarse level reference        v
-!|*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*| 
+!|*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*|
 !|x===============x===============x===============x===============x===============x|
        cxI(1) = i
        cxI(2) = j
        cxI(3) = k
        cxI = (cxI+lbf)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
 
        ii=i+lbf(1)-1
@@ -1459,14 +1459,14 @@
        if(ii/2*2==ii)then
          if(jj/2*2==jj)then
            if(kk/2*2==kk)then
-!  due to ghost zone, we can deal with symmetry boundary like this       
+!  due to ghost zone, we can deal with symmetry boundary like this
              tmp2= C1*(funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)-2)+funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)+3))&
                   +C2*(funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)-1)+funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)+2))&
                   +C3*(funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)  )+funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)+1))
              tmp1= C1*(tmp2(:,1)+tmp2(:,6))+C2*(tmp2(:,2)+tmp2(:,5))+C3*(tmp2(:,3)+tmp2(:,4))
              funf(i,j,k)= C1*(tmp1(1)+tmp1(6))+C2*(tmp1(2)+tmp1(5))+C3*(tmp1(3)+tmp1(4))
            else
-             tmp2= funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3))            
+             tmp2= funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3))
              tmp1= C1*(tmp2(:,1)+tmp2(:,6))+C2*(tmp2(:,2)+tmp2(:,5))+C3*(tmp2(:,3)+tmp2(:,4))
              funf(i,j,k)= C1*(tmp1(1)+tmp1(6))+C2*(tmp1(2)+tmp1(5))+C3*(tmp1(3)+tmp1(4))
            endif
@@ -1478,21 +1478,21 @@
              tmp1= tmp2(:,3)
              funf(i,j,k)= C1*(tmp1(1)+tmp1(6))+C2*(tmp1(2)+tmp1(5))+C3*(tmp1(3)+tmp1(4))
            else
-             tmp2= funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3))  
+             tmp2= funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3))
              tmp1= tmp2(:,3)
              funf(i,j,k)= C1*(tmp1(1)+tmp1(6))+C2*(tmp1(2)+tmp1(5))+C3*(tmp1(3)+tmp1(4))
            endif
          endif
        else
          if(jj/2*2==jj)then
-           if(kk/2*2==kk)then    
+           if(kk/2*2==kk)then
              tmp2= C1*(funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)-2)+funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)+3))&
                   +C2*(funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)-1)+funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)+2))&
                   +C3*(funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)  )+funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)+1))
              tmp1= C1*(tmp2(:,1)+tmp2(:,6))+C2*(tmp2(:,2)+tmp2(:,5))+C3*(tmp2(:,3)+tmp2(:,4))
              funf(i,j,k)= tmp1(3)
            else
-             tmp2= funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3))  
+             tmp2= funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3))
              tmp1= C1*(tmp2(:,1)+tmp2(:,6))+C2*(tmp2(:,2)+tmp2(:,5))+C3*(tmp2(:,3)+tmp2(:,4))
              funf(i,j,k)= tmp1(3)
            endif
@@ -1547,7 +1547,7 @@
 
   real*8, dimension(1:3) :: base
   integer,dimension(3) :: lbc,ubc,lbf,ubf,lbp,ubp,lbpc,ubpc
-! when if=1 -> ic=0, this is different to vertex center grid 
+! when if=1 -> ic=0, this is different to vertex center grid
   real*8, dimension(-2:extc(1),-2:extc(2),-2:extc(3))   :: funcc
   integer,dimension(3) :: cxI
   integer :: i,j,k,ii,jj,kk
@@ -1561,7 +1561,7 @@
   integer::imino,imaxo,jmino,jmaxo,kmino,kmaxo
 
   real*8,dimension(3) :: CD,FD
-  
+
   if(wei.ne.3)then
      write(*,*)"prolongrestrict.f90::prolong3: this routine only surport 3 dimension"
      write(*,*)"dim = ",wei
@@ -1586,8 +1586,8 @@
   enddo
 
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
     lbf = idint((llbf-base)/FD+0.4)+1
@@ -1632,7 +1632,7 @@
   endif
 
   call symmetry_bd(3,extc,func,funcc,SoA)
-     
+
 !~~~~~~> prolongation start...
   do k = kmino,kmaxo
    do j = jmino,jmaxo
@@ -1641,10 +1641,10 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
 
        if(any(cxI+3 > extc)) write(*,*)"error in prolong"
@@ -1695,7 +1695,7 @@
          endif
        else
          if(jj/2*2==jj)then
-           if(kk/2*2==kk)then               
+           if(kk/2*2==kk)then
              tmp2= C1*funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)-2)+&
                    C2*funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)-1)+&
                    C3*funcc(cxI(1)-2:cxI(1)+3,cxI(2)-2:cxI(2)+3,cxI(3)  )+&
@@ -1784,7 +1784,7 @@
   integer::imino,imaxo,jmino,jmaxo,kmino,kmaxo
 
   real*8,dimension(3) :: CD,FD
-  
+
   if(wei.ne.3)then
      write(*,*)"prolongrestrict.f90::restrict3: this routine only surport 3 dimension"
      write(*,*)"dim = ",wei
@@ -1808,8 +1808,8 @@
      endif
   enddo
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
 ! note say base = 0, llbf = 0, uubf = 2
@@ -1870,10 +1870,10 @@
        cxI(2) = j
        cxI(3) = k
 ! change to fine level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = 2*(cxI+lbc-1) - 1
-! change to array index      
+! change to array index
        cxI = cxI - lbf + 1
 
        if(any(cxI+3 > extf)) write(*,*)"error in restrict"
@@ -1885,13 +1885,13 @@
     enddo
    enddo
   enddo
-  
+
   return
 
   end subroutine restrict3
 #else
 #error Not define Vertex nor Cell
-#endif  
+#endif
 #endif
 
 #elif (ghost_width == 4)
@@ -1899,7 +1899,7 @@
 #ifdef Vertex
 #ifdef Cell
 #error Both Cell and Vertex are defined
-#endif    
+#endif
 !--------------------------------------------------------------------------
 !
 ! Prolongation from coarser grids to finer grids
@@ -1968,8 +1968,8 @@
   enddo
 
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
     lbf = idint((llbf-base)/FD+0.4)+1
@@ -2010,17 +2010,17 @@
           write(*,*)llbp,uubp
           write(*,*)lbp,ubp,lbpc,ubpc
           if(imini.lt.1) write(*,*)"imini = ",imini
-          if(jmini.lt.1) write(*,*)"jmini = ",jmini       
-          if(kmini.lt.1) write(*,*)"kmini = ",kmini      
-          if(imino.lt.1) write(*,*)"imino = ",imino       
-          if(jmino.lt.1) write(*,*)"jmino = ",jmino       
-          if(kmino.lt.1) write(*,*)"kmino = ",kmino   
-          if(imaxi.gt.extc(1)) write(*,*)"imaxi = ",imaxi,"extc(1) = ",extc(1) 
-          if(jmaxi.gt.extc(2)) write(*,*)"jmaxi = ",jmaxi,"extc(2) = ",extc(2) 
-          if(kmaxi.gt.extc(3)) write(*,*)"kmaxi = ",kmaxi,"extc(3) = ",extc(3) 
-          if(imaxo.gt.extf(1)) write(*,*)"imaxo = ",imaxo,"extf(1) = ",extf(1) 
-          if(jmaxo.gt.extf(2)) write(*,*)"jmaxo = ",jmaxo,"extf(2) = ",extf(2) 
-          if(kmaxo.gt.extf(3)) write(*,*)"kmaxo = ",kmaxo,"extf(3) = ",extf(3) 
+          if(jmini.lt.1) write(*,*)"jmini = ",jmini
+          if(kmini.lt.1) write(*,*)"kmini = ",kmini
+          if(imino.lt.1) write(*,*)"imino = ",imino
+          if(jmino.lt.1) write(*,*)"jmino = ",jmino
+          if(kmino.lt.1) write(*,*)"kmino = ",kmino
+          if(imaxi.gt.extc(1)) write(*,*)"imaxi = ",imaxi,"extc(1) = ",extc(1)
+          if(jmaxi.gt.extc(2)) write(*,*)"jmaxi = ",jmaxi,"extc(2) = ",extc(2)
+          if(kmaxi.gt.extc(3)) write(*,*)"kmaxi = ",kmaxi,"extc(3) = ",extc(3)
+          if(imaxo.gt.extf(1)) write(*,*)"imaxo = ",imaxo,"extf(1) = ",extf(1)
+          if(jmaxo.gt.extf(2)) write(*,*)"jmaxo = ",jmaxo,"extf(2) = ",extf(2)
+          if(kmaxo.gt.extf(3)) write(*,*)"kmaxo = ",kmaxo,"extf(3) = ",extf(3)
           return
   endif
 !~~~~~~> prolongation start...
@@ -2028,13 +2028,13 @@
    do j = jmino,jmaxo
     do i = imino,imaxo
 ! change to coarse level reference                        v
-!|*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*| 
+!|*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*|
 !|x===============x===============x===============x===============x===============x===============x===============x|
        cxI(1) = i
        cxI(2) = j
        cxI(3) = k
        cxI = (cxI+lbf)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
 
        ii=i+lbf(1)-1
@@ -2045,7 +2045,7 @@
        if(ii/2*2==ii)then
          if(jj/2*2==jj)then
            if(kk/2*2==kk)then
-!  due to ghost zone, we can deal with symmetry boundary like this                  
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>3.and.cxI(2)>3.and.cxI(3)>3)then
                tmp2= C1*(func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)-3)+func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)+4))&
                     +C2*(func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)-2)+func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)+3))&
@@ -2121,7 +2121,7 @@
          endif
        else
          if(jj/2*2==jj)then
-           if(kk/2*2==kk)then               
+           if(kk/2*2==kk)then
              if(cxI(1)>3.and.cxI(2)>3.and.cxI(3)>3)then
                tmp2= C1*(func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)-3)+func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)+4))&
                     +C2*(func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)-2)+func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)+3))&
@@ -2235,7 +2235,7 @@
 
 
   real*8,dimension(3) :: CD,FD
-  
+
   if(wei.ne.3)then
      write(*,*)"prolongrestrict.f90::restrict3: this routine only surport 3 dimension"
      write(*,*)"dim = ",wei
@@ -2259,8 +2259,8 @@
      endif
   enddo
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
 ! note say base = 0, llbf = 0, uubf = 2
@@ -2322,13 +2322,13 @@
        cxI(2) = j
        cxI(3) = k
 ! change to fine level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = 2*(cxI+lbc-1) - 1
-! change to array index      
+! change to array index
        cxI = cxI - lbf + 1
        if(any(cxI+4 > extf)) write(*,*)"error in restrict"
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
        if(cxI(1)>3.and.cxI(2)>3.and.cxI(3)>3)then
           tmp2= C1*(funf(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)-3)+funf(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)+4))&
                +C2*(funf(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)-2)+funf(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)+3))&
@@ -2348,7 +2348,7 @@
     enddo
    enddo
   enddo
-  
+
   return
 
   end subroutine restrict3
@@ -2395,7 +2395,7 @@
   logical::decide3d
 
   real*8,dimension(3) :: CD,FD
-  
+
   if(wei.ne.3)then
      write(*,*)"prolongrestrict.f90::prolong3: this routine only surport 3 dimension"
      write(*,*)"dim = ",wei
@@ -2420,8 +2420,8 @@
   enddo
 
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
     lbf = idint((llbf-base)/FD+0.4)+1
@@ -2473,10 +2473,10 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
 
        if(any(cxI+4 > extc)) write(*,*)"error in prolong"
@@ -2486,7 +2486,7 @@
        if(ii/2*2==ii)then
          if(jj/2*2==jj)then
            if(kk/2*2==kk)then
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>3.and.cxI(2)>3.and.cxI(3)>3)then
                 tmp2= C1*func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)-3)+&
                       C2*func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)-2)+&
@@ -2505,7 +2505,7 @@
                  write(*,*)"llbf = ",llbf
                  stop
                 endif
-                tmp2= C1*ya(:,:,1)+C2*ya(:,:,2)+C3*ya(:,:,3)+C4*ya(:,:,4)+& 
+                tmp2= C1*ya(:,:,1)+C2*ya(:,:,2)+C3*ya(:,:,3)+C4*ya(:,:,4)+&
                       C5*ya(:,:,5)+C6*ya(:,:,6)+C7*ya(:,:,7)+C8*ya(:,:,8)
              endif
              tmp1= C1*tmp2(:,1)+C2*tmp2(:,2)+C3*tmp2(:,3)+C4*tmp2(:,4)+&
@@ -2596,7 +2596,7 @@
          endif
        else
          if(jj/2*2==jj)then
-           if(kk/2*2==kk)then               
+           if(kk/2*2==kk)then
              if(cxI(1)>3.and.cxI(2)>3.and.cxI(3)>3)then
                 tmp2= C1*func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)-3)+&
                       C2*func(cxI(1)-3:cxI(1)+4,cxI(2)-3:cxI(2)+4,cxI(3)-2)+&
@@ -2714,7 +2714,7 @@
   end subroutine prolong3
 #else
 #error Not define Vertex nor Cell
-#endif  
+#endif
 #endif
 
 #elif (ghost_width == 5)
@@ -2722,7 +2722,7 @@
 #ifdef Vertex
 #ifdef Cell
 #error Both Cell and Vertex are defined
-#endif    
+#endif
 !--------------------------------------------------------------------------
 !
 ! Prolongation from coarser grids to finer grids
@@ -2792,8 +2792,8 @@
   enddo
 
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
     lbf = idint((llbf-base)/FD+0.4)+1
@@ -2834,17 +2834,17 @@
           write(*,*)llbp,uubp
           write(*,*)lbp,ubp,lbpc,ubpc
           if(imini.lt.1) write(*,*)"imini = ",imini
-          if(jmini.lt.1) write(*,*)"jmini = ",jmini       
-          if(kmini.lt.1) write(*,*)"kmini = ",kmini      
-          if(imino.lt.1) write(*,*)"imino = ",imino       
-          if(jmino.lt.1) write(*,*)"jmino = ",jmino       
-          if(kmino.lt.1) write(*,*)"kmino = ",kmino   
-          if(imaxi.gt.extc(1)) write(*,*)"imaxi = ",imaxi,"extc(1) = ",extc(1) 
-          if(jmaxi.gt.extc(2)) write(*,*)"jmaxi = ",jmaxi,"extc(2) = ",extc(2) 
-          if(kmaxi.gt.extc(3)) write(*,*)"kmaxi = ",kmaxi,"extc(3) = ",extc(3) 
-          if(imaxo.gt.extf(1)) write(*,*)"imaxo = ",imaxo,"extf(1) = ",extf(1) 
-          if(jmaxo.gt.extf(2)) write(*,*)"jmaxo = ",jmaxo,"extf(2) = ",extf(2) 
-          if(kmaxo.gt.extf(3)) write(*,*)"kmaxo = ",kmaxo,"extf(3) = ",extf(3) 
+          if(jmini.lt.1) write(*,*)"jmini = ",jmini
+          if(kmini.lt.1) write(*,*)"kmini = ",kmini
+          if(imino.lt.1) write(*,*)"imino = ",imino
+          if(jmino.lt.1) write(*,*)"jmino = ",jmino
+          if(kmino.lt.1) write(*,*)"kmino = ",kmino
+          if(imaxi.gt.extc(1)) write(*,*)"imaxi = ",imaxi,"extc(1) = ",extc(1)
+          if(jmaxi.gt.extc(2)) write(*,*)"jmaxi = ",jmaxi,"extc(2) = ",extc(2)
+          if(kmaxi.gt.extc(3)) write(*,*)"kmaxi = ",kmaxi,"extc(3) = ",extc(3)
+          if(imaxo.gt.extf(1)) write(*,*)"imaxo = ",imaxo,"extf(1) = ",extf(1)
+          if(jmaxo.gt.extf(2)) write(*,*)"jmaxo = ",jmaxo,"extf(2) = ",extf(2)
+          if(kmaxo.gt.extf(3)) write(*,*)"kmaxo = ",kmaxo,"extf(3) = ",extf(3)
           return
   endif
 !~~~~~~> prolongation start...
@@ -2852,13 +2852,13 @@
    do j = jmino,jmaxo
     do i = imino,imaxo
 ! change to coarse level reference
-!|*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*| 
+!|*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*|
 !|x===============x===============x===============x========|
        cxI(1) = i
        cxI(2) = j
        cxI(3) = k
        cxI = (cxI+lbf)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
 
        ii=i+lbf(1)-1
@@ -2869,7 +2869,7 @@
        if(ii/2*2==ii)then
          if(jj/2*2==jj)then
            if(kk/2*2==kk)then
-!  due to ghost zone, we can deal with symmetry boundary like this                                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>4.and.cxI(2)>4.and.cxI(3)>4)then
                tmp2= C1*(func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)-4)+func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)+5))&
                     +C2*(func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)-3)+func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)+4))&
@@ -2947,7 +2947,7 @@
          endif
        else
          if(jj/2*2==jj)then
-           if(kk/2*2==kk)then               
+           if(kk/2*2==kk)then
              if(cxI(1)>4.and.cxI(2)>4.and.cxI(3)>4)then
                tmp2= C1*(func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)-4)+func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)+5))&
                     +C2*(func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)-3)+func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)+4))&
@@ -3061,7 +3061,7 @@
   logical::decide3d
 
   real*8,dimension(3) :: CD,FD
-  
+
   if(wei.ne.3)then
      write(*,*)"prolongrestrict.f90::restrict3: this routine only surport 3 dimension"
      write(*,*)"dim = ",wei
@@ -3085,8 +3085,8 @@
      endif
   enddo
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
 ! note say base = 0, llbf = 0, uubf = 2
@@ -3145,14 +3145,14 @@
        cxI(2) = j
        cxI(3) = k
 ! change to fine level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = 2*(cxI+lbc-1) - 1
-! change to array index      
+! change to array index
        cxI = cxI - lbf + 1
 
        if(any(cxI+5 > extf)) write(*,*)"error in restrict"
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
        if(cxI(1)>4.and.cxI(2)>4.and.cxI(3)>4)then
           tmp2= C1*(funf(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)-4)+funf(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)+5))&
                +C2*(funf(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)-3)+funf(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)+4))&
@@ -3176,7 +3176,7 @@
     enddo
    enddo
   enddo
-  
+
   return
 
   end subroutine restrict3
@@ -3226,7 +3226,7 @@
   logical::decide3d
 
   real*8,dimension(3) :: CD,FD
-  
+
   if(wei.ne.3)then
      write(*,*)"prolongrestrict.f90::prolong3: this routine only surport 3 dimension"
      write(*,*)"dim = ",wei
@@ -3251,8 +3251,8 @@
   enddo
 
 !!! function idint:
-!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1, 
-!then INT(A) equals the largest integer that does not exceed the range of A 
+!If A is of type REAL and |A| < 1, INT(A) equals 0. If |A| \geq 1,
+!then INT(A) equals the largest integer that does not exceed the range of A
 !and whose sign is the same as the sign of A.
 
     lbf = idint((llbf-base)/FD+0.4)+1
@@ -3304,10 +3304,10 @@
        cxI(2) = j
        cxI(3) = k
 ! change to coarse level reference
-!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---| 
+!|---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*--- ---*---|
 !|=======x===============x===============x===============x=======|
        cxI = (cxI+lbf-1)/2
-! change to array index      
+! change to array index
        cxI = cxI - lbc + 1
 
        if(any(cxI+5 > extc)) write(*,*)"error in prolong"
@@ -3317,7 +3317,7 @@
        if(ii/2*2==ii)then
          if(jj/2*2==jj)then
            if(kk/2*2==kk)then
-!  due to ghost zone, we can deal with symmetry boundary like this                   
+!  due to ghost zone, we can deal with symmetry boundary like this
              if(cxI(1)>4.and.cxI(2)>4.and.cxI(3)>4)then
                 tmp2= C1 *func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)-4)+&
                       C2 *func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)-3)+&
@@ -3336,7 +3336,7 @@
                         write(*,*)"prolong3 position index: ",i+lbf(1)-1,j+lbf(2)-1,k+lbf(3)-1
                         return
                 endif
-                tmp2= C1*ya(:,:,1)+C2*ya(:,:,2)+C3*ya(:,:,3)+C4*ya(:,:,4)+C5 *ya(:,:, 5)+& 
+                tmp2= C1*ya(:,:,1)+C2*ya(:,:,2)+C3*ya(:,:,3)+C4*ya(:,:,4)+C5 *ya(:,:, 5)+&
                       C6*ya(:,:,6)+C7*ya(:,:,7)+C8*ya(:,:,8)+C9*ya(:,:,9)+C10*ya(:,:,10)
              endif
              tmp1= C1*tmp2(:,1)+C2*tmp2(:,2)+C3*tmp2(:,3)+C4*tmp2(:,4)+C5 *tmp2(:, 5)+&
@@ -3427,7 +3427,7 @@
          endif
        else
          if(jj/2*2==jj)then
-           if(kk/2*2==kk)then               
+           if(kk/2*2==kk)then
              if(cxI(1)>4.and.cxI(2)>4.and.cxI(3)>4)then
                 tmp2= C1 *func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)-4)+&
                       C2 *func(cxI(1)-4:cxI(1)+5,cxI(2)-4:cxI(2)+5,cxI(3)-3)+&
@@ -3545,7 +3545,7 @@
   end subroutine prolong3
 #else
 #error Not define Vertex nor Cell
-#endif  
+#endif
 
 #endif
 

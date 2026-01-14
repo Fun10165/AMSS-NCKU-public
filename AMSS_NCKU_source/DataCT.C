@@ -21,7 +21,7 @@ using namespace std;
 #include <fstream.h>
 #endif
 
-#include "microdef.fh"
+#include "macrodef.fh"
 
 int main(int argc, char *argv[])
 {

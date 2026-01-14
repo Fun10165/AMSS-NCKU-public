@@ -226,8 +226,8 @@ int main(int argc, char *argv[])
             loc_time = localtime(&tnow);
             setfile << "# File created on " << asctime(loc_time);
             setfile << "#" << endl;
-            // echo the micro definition in "microdef.fh"
-            setfile << "macro definition used in microdef.fh" << endl;
+            // echo the macro definition in "macrodef.fh"
+            setfile << "macro definition used in macrodef.fh" << endl;
 
 #if (tetradtype == 0)
             setfile << "my own tetrad type for psi4 calculation" << endl;
@@ -267,8 +267,8 @@ int main(int argc, char *argv[])
             MPI_Abort(MPI_COMM_WORLD, 1);
 #endif
 
-            // echo the micro definition in "microdef.h"
-            setfile << "macro definition used in microdef.h" << endl;
+            // echo the macro definition in "macrodef.h"
+            setfile << "macro definition used in macrodef.h" << endl;
             setfile << "     Sommerfeld boundary type = " << SommerType << endl;
 #ifdef GaussInt
             setfile << "using Gauss integral in waveshell" << endl;

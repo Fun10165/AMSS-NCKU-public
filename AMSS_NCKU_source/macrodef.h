@@ -2,7 +2,7 @@
 #ifndef MACRODEF_H
 #define MACRODEF_H
 
-#include "microdef.fh"
+#include "macrodef.fh"
 
 // application parameters
 
@@ -81,7 +81,7 @@
 //  some basic parameters for numerical calculation
 #define dim 3
 
-//#define Cell or Vertex in "microdef.fh"
+//#define Cell or Vertex in "macrodef.fh"
 
 // ******
 // buffer point number for mesh refinement interface
