@@ -1,6 +1,6 @@
 
-#ifndef MICRODEF_H
-#define MICRODEF_H
+#ifndef MACRODEF_H
+#define MACRODEF_H
 
 #include "microdef.fh"
 
@@ -109,4 +109,4 @@
 
 #define TINY 1e-10
 
-#endif   /* MICRODEF_H */
+#endif   /* MACRODEF_H */
