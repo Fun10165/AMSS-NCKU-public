@@ -1,0 +1,37 @@
+{
+  "name": "two_puncture_higher_resolution",
+  "params": {
+    "mm": 0.5,
+    "mp": 0.5,
+    "b": 3.0,
+    "P_plusx": 0.0,
+    "P_plusy": 0.1,
+    "P_plusz": 0.0,
+    "P_minusx": 0.0,
+    "P_minusy": -0.1,
+    "P_minusz": 0.0,
+    "S_plusx": 0.0,
+    "S_plusy": 0.0,
+    "S_plusz": 0.0,
+    "S_minusx": 0.0,
+    "S_minusy": 0.0,
+    "S_minusz": 0.0,
+    "Mp": 1.0,
+    "Mm": 1.0,
+    "admtol": 1.0e-9,
+    "Newtontol": 1.0e-9,
+    "nA": 16,
+    "nB": 14,
+    "nphi": 10,
+    "Newtonmaxit": 8
+  },
+  "tolerance": {
+    "ansorg_rtol": 1.0e-8,
+    "ansorg_atol": 1.0e-10,
+    "stdout_rtol": 1.0e-8,
+    "stdout_atol": 1.0e-10
+  },
+  "ignore_line_patterns": [
+    "^#File created on "
+  ]
+}

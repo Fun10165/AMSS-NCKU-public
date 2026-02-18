@@ -1,3 +1,10 @@
 __pycache__
 .venv
-
+.coverage
+.pytest_cache/
+build/
+AMSS_NCKU_source/*.o
+AMSS_NCKU_source/ABE
+AMSS_NCKU_source/ABEGPU
+AMSS_NCKU_source/TwoPunctureABE
+AMSS_NCKU_source/make.log

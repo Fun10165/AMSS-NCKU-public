@@ -8,6 +8,32 @@ AMSS - NCKU uses the finite difference method and the adaptive mesh refinement t
 
 Currently, AMSS - NCKU can successfully handle binary black hole systems and multiple black hole systems, calculate the time evolution of these systems, and solve the gravitational waves released during these processes.
 
+#### Quick Start (Nix + Tests + Rust Refactor Guard)
+
+1. Enter reproducible dev shell (Ubuntu 22.04 compatible profile):
+
+    ```bash
+    nix --extra-experimental-features 'nix-command flakes' develop
+    ```
+
+2. Build and run native C/C++/Fortran checks:
+
+    ```bash
+    ./scripts/test_native.sh
+    ```
+
+3. Run regression guard across all refactor cases:
+
+    ```bash
+    ./scripts/refactor_guard.sh
+    ```
+
+4. Run legacy-vs-rust differential checks:
+
+    ```bash
+    RUST_TWOPUNCTURE_BIN=/path/to/rust/TwoPunctureABE ./scripts/refactor_guard.sh
+    ```
+
 #### The Development of AMSS-NCKU
 
 In 2008, the AMSS-NCKU code was successfully developed, enabling the numerical simulation for binary black hole and multiple black hole systems via the BSSN equations.
@@ -120,6 +146,64 @@ September 2025   First commit
 December 2025    Update: Achieved the automatic plotting of gravitational wave amplitudes.
 
 January 2026     Update: Fixed some bugs.
+
+#### Python source module docs and tests
+
+- Source module documentation: `docs/src_derivative_modules.md`
+- Nix + native(C/C++/Fortran) test guide: `docs/nix_native_env.md`
+- Rust refactor guard guide: `docs/rust_refactor_guard.md`
+- Rust rewrite plan (Python-compatible): `docs/rust_refactor_plan_python_compat.md`
+- Test configuration: `pytest.ini`
+- Unit tests:
+  - `tests/test_derivative.py`
+  - `tests/test_derivative_xiaoqu.py`
+
+Run the tests with coverage:
+
+```bash
+python -m pytest \
+  tests/test_derivative.py \
+  tests/test_derivative_xiaoqu.py \
+  --cov=derivative \
+  --cov=derivative_xiaoqu \
+  --cov-report=term-missing
+```
+
+Run native C/C++/Fortran tests:
+
+```bash
+./scripts/test_native.sh
+```
+
+Run refactor-guard tests (legacy baseline + diff framework):
+
+```bash
+./scripts/refactor_guard.sh
+```
+
+Run selected differential cases only:
+
+```bash
+CASE_GLOB='tests/refactor_guard/cases/*spin*.json' ./scripts/refactor_guard.sh
+```
+
+Enable legacy-vs-rust differential check:
+
+```bash
+RUST_TWOPUNCTURE_BIN=/path/to/rust_twopuncture ./scripts/refactor_guard.sh
+```
+
+Force rust diff in CI:
+
+```bash
+REQUIRE_RUST_DIFF=1 RUST_TWOPUNCTURE_BIN=/path/to/rust_twopuncture ./scripts/refactor_guard.sh
+```
+
+Use Nix (Ubuntu22-compatible profile):
+
+```bash
+nix develop
+```
 
 
 #### Tips

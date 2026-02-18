@@ -1,0 +1,37 @@
+{
+  "name": "two_puncture_mass_ratio_q2",
+  "params": {
+    "mm": 0.3333333333,
+    "mp": 0.6666666667,
+    "b": 4.0,
+    "P_plusx": 0.0,
+    "P_plusy": 0.085,
+    "P_plusz": 0.0,
+    "P_minusx": 0.0,
+    "P_minusy": -0.085,
+    "P_minusz": 0.0,
+    "S_plusx": 0.0,
+    "S_plusy": 0.0,
+    "S_plusz": 0.0,
+    "S_minusx": 0.0,
+    "S_minusy": 0.0,
+    "S_minusz": 0.0,
+    "Mp": 1.0,
+    "Mm": 1.0,
+    "admtol": 1.0e-8,
+    "Newtontol": 1.0e-8,
+    "nA": 12,
+    "nB": 12,
+    "nphi": 8,
+    "Newtonmaxit": 7
+  },
+  "tolerance": {
+    "ansorg_rtol": 1.0e-8,
+    "ansorg_atol": 1.0e-10,
+    "stdout_rtol": 1.0e-8,
+    "stdout_atol": 1.0e-10
+  },
+  "ignore_line_patterns": [
+    "^#File created on "
+  ]
+}
